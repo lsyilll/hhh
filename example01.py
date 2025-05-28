@@ -6,7 +6,6 @@ from langchain_openai import ChatOpenAI
 from openai import OpenAI
 
 
-spell = SpellChecker()
 
 
 def get_ai_response(user_prompt):
@@ -56,16 +55,6 @@ def generate_image(prompt):
     )
     return response.data[0].url
 
-
-def auto_correct(user_input):
-    words = user_input.split()
-    misspelled = spell.unknown(words)
-    if misspelled:
-        corrected_words = [spell.correction(word) for word in words]
-        corrected_input = ' '.join(corrected_words)
-        return f"你可能想输入：**{corrected_input}**", corrected_input
-    else:
-        return None, user_input
 
 
 st.title('我的ChatGPT')
