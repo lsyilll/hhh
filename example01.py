@@ -4,7 +4,7 @@ from langchain.chains.conversation.base import ConversationChain
 from langchain.memory import ConversationBufferMemory
 from langchain_openai import ChatOpenAI
 from openai import OpenAI
-from spellchecker import SpellChecker
+
 
 spell = SpellChecker()
 
