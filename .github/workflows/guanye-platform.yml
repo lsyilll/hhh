@@ -69,13 +69,8 @@ jobs:
       - run: uv sync --locked
       - run: uv run python scripts/init_config.py
       - run: docker compose up -d --build postgres redis seaweed storage-init business worker dispatcher
-      - name: Wait for the authenticated business service
-        run: |
-          for attempt in $(seq 1 60); do
-            if curl --fail --silent http://127.0.0.1:18081/actuator/health > /dev/null; then exit 0; fi
-            sleep 3
-          done
-          exit 1
+      - name: Wait for authenticated core services and the initialized S3 bucket
+        run: uv run python scripts/wait_core_services.py --timeout 180
       - run: uv run python scripts/smoke_core.py
       - name: Collect failure diagnostics without resolved configuration or secrets
         if: failure()
