@@ -68,7 +68,7 @@ jobs:
         with: {python-version: '3.12'}
       - run: uv sync --locked
       - run: uv run python scripts/init_config.py
-      - run: docker compose up -d --build postgres redis seaweed business worker dispatcher
+      - run: docker compose up -d --build postgres redis seaweed storage-init business worker dispatcher
       - name: Wait for the authenticated business service
         run: |
           for attempt in $(seq 1 60); do
@@ -79,7 +79,7 @@ jobs:
       - run: uv run python scripts/smoke_core.py
       - name: Collect failure diagnostics without resolved configuration or secrets
         if: failure()
-        run: docker compose logs --tail 80 business worker dispatcher
+        run: docker compose logs --tail 80 storage-init seaweed business worker dispatcher
       - name: Remove ephemeral CI services and their test-only volumes
         if: always()
         run: docker compose down --volumes
