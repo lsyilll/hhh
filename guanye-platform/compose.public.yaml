@@ -1,0 +1,6 @@
+# CPU public-model runtime; requires the already built guanye-worker image.
+services:
+  models:
+    build:
+      context: .
+      dockerfile: model_service/Dockerfile.public

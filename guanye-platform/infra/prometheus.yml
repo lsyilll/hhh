@@ -1,0 +1,8 @@
+global: {scrape_interval: 15s}
+scrape_configs:
+  - job_name: otel
+    static_configs: [{targets: ['otel:8889']}]
+  - job_name: business
+    metrics_path: /actuator/prometheus
+    authorization: {credentials_file: /run/secrets/metrics_token}
+    static_configs: [{targets: ['business:8081']}]

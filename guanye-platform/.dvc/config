@@ -1,0 +1,5 @@
+[core]
+    remote = seaweed
+['remote "seaweed"']
+    url = s3://guanye/dvc
+    endpointurl = http://127.0.0.1:18333

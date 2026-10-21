@@ -1,0 +1,8 @@
+.git
+.env
+.runtime
+.tooling
+.venv*
+**/node_modules
+**/__pycache__
+**/target

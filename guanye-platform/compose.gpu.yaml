@@ -1,0 +1,7 @@
+services:
+  models:
+    build: {context: ., dockerfile: model_service/Dockerfile.gpu, args: {INSTALL_SAM3: '${INSTALL_SAM3:-0}'}}
+    environment:
+      MODEL_DEVICE: cuda
+      GUANYE_EXCLUSIVE_GPU: '1'
+    deploy: {resources: {reservations: {devices: [{driver: nvidia, count: 1, capabilities: [gpu]}]}}}

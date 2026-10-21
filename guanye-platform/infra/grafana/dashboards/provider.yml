@@ -1,0 +1,3 @@
+apiVersion: 1
+providers:
+  - {name: guanye, folder: 观叶, type: file, options: {path: /etc/grafana/provisioning/dashboards}}

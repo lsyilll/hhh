@@ -1,0 +1,15 @@
+stages:
+  snapshot:
+    cmd: python scripts/dataset_pipeline.py snapshot
+    deps: [scripts/dataset_pipeline.py]
+    params: [project_id]
+    outs: [datasets/manifest.jsonl]
+  audit:
+    cmd: python scripts/dataset_pipeline.py audit
+    deps: [datasets/manifest.jsonl, scripts/dataset_pipeline.py]
+    metrics: [datasets/audit.json]
+  split:
+    cmd: python scripts/dataset_pipeline.py split
+    deps: [datasets/manifest.jsonl, scripts/dataset_pipeline.py]
+    params: [seed]
+    outs: [datasets/splits.json]
