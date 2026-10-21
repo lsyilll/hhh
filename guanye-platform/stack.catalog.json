@@ -1,0 +1,305 @@
+{
+  "technologies": [
+    {
+      "name": "React 19",
+      "purpose": "研究与采集平台的页面与组件",
+      "module": "web",
+      "condition": ""
+    },
+    {
+      "name": "TypeScript",
+      "purpose": "项目、样本、任务及设备数据类型",
+      "module": "web",
+      "condition": ""
+    },
+    {
+      "name": "Vite",
+      "purpose": "前端开发与生产构建",
+      "module": "web",
+      "condition": ""
+    },
+    {
+      "name": "Ant Design",
+      "purpose": "表格、表单、角色操作、二维码及交互反馈",
+      "module": "web",
+      "condition": ""
+    },
+    {
+      "name": "TanStack Query",
+      "purpose": "请求缓存、加载状态、任务刷新和失效更新",
+      "module": "web",
+      "condition": ""
+    },
+    {
+      "name": "HTTPS API",
+      "purpose": "统一入口、登录 cookie 与设备双向 TLS 上传",
+      "module": "gateway",
+      "condition": ""
+    },
+    {
+      "name": "SSE",
+      "purpose": "原图像问答流式回答及平台任务更新",
+      "module": "gateway",
+      "condition": ""
+    },
+    {
+      "name": "ECharts",
+      "purpose": "真实样本趋势与原运行概览",
+      "module": "web",
+      "condition": ""
+    },
+    {
+      "name": "Java 21",
+      "purpose": "业务服务运行时",
+      "module": "business",
+      "condition": ""
+    },
+    {
+      "name": "Spring Boot 4.x",
+      "purpose": "项目、设备、样本、任务、复核与审计接口",
+      "module": "business",
+      "condition": ""
+    },
+    {
+      "name": "Spring Security",
+      "purpose": "短时签名身份、业务/设备/监控 scope 与项目角色",
+      "module": "business",
+      "condition": ""
+    },
+    {
+      "name": "Python / FastAPI",
+      "purpose": "保留原农业问答，增加同源平台适配与独立模型服务",
+      "module": "algorithm",
+      "condition": ""
+    },
+    {
+      "name": "PyTorch / Transformers",
+      "purpose": "原 AgriChat 和隔离的新模型加载及推理",
+      "module": "algorithm",
+      "condition": ""
+    },
+    {
+      "name": "OpenCV / Pillow / NumPy",
+      "purpose": "质检、图像解码、裁剪、特征与采集终端处理",
+      "module": "algorithm",
+      "condition": ""
+    },
+    {
+      "name": "DINOv2 ViT-B/14",
+      "purpose": "公开默认视觉特征与 FAISS 项目索引",
+      "module": "models",
+      "condition": "无需申请访问，官方公开权重"
+    },
+    {
+      "name": "DINOv2 ViT-L/14",
+      "purpose": "公开视觉骨干对比实验",
+      "module": "models",
+      "condition": "无需申请访问，官方公开权重"
+    },
+    {
+      "name": "SAM 2.1 Small",
+      "purpose": "根据人工框选范围生成分割候选，不处理文字提示",
+      "module": "models",
+      "condition": "无需申请访问，官方公开权重"
+    },
+    {
+      "name": "DINOv3 ViT-B/16",
+      "purpose": "授权后可选的视觉特征与 FAISS 项目索引",
+      "module": "models",
+      "condition": "官方授权及权重待本人完成"
+    },
+    {
+      "name": "DINOv3 ViT-L/16",
+      "purpose": "视觉骨干对照实验",
+      "module": "models",
+      "condition": "官方授权及权重待本人完成"
+    },
+    {
+      "name": "MQTT 5 / Mosquitto",
+      "purpose": "设备心跳、证书身份及命令主题隔离",
+      "module": "devices",
+      "condition": "MQTT 5 双向 TLS、心跳入库及主题隔离已通过；实体设备待验收"
+    },
+    {
+      "name": "TLS",
+      "purpose": "网页 HTTPS、设备证书和本地开发 CA",
+      "module": "gateway",
+      "condition": "HTTPS / 双向 TLS 已实际验收；浏览器及跨设备证书信任仍需管理员配置"
+    },
+    {
+      "name": "PostgreSQL / SQL",
+      "purpose": "项目角色、设备、任务、样本、复核、审计和事务发件箱",
+      "module": "core",
+      "condition": ""
+    },
+    {
+      "name": "Redis / Celery",
+      "purpose": "任务排队、结果缓存、进度与失败重试",
+      "module": "core",
+      "condition": ""
+    },
+    {
+      "name": "S3 / SeaweedFS",
+      "purpose": "植物原图、遮罩、特征索引、数据清单和报告",
+      "module": "core",
+      "condition": ""
+    },
+    {
+      "name": "FAISS",
+      "purpose": "原个人案例库及 DINOv2 / DINOv3 项目相似检索",
+      "module": "models",
+      "condition": ""
+    },
+    {
+      "name": "MLflow",
+      "purpose": "模型参数、数据哈希、评估指标与实验版本",
+      "module": "research",
+      "condition": ""
+    },
+    {
+      "name": "DVC / Git",
+      "purpose": "数据清单、划分、数据版本和代码版本关联",
+      "module": "research",
+      "condition": ""
+    },
+    {
+      "name": "Linux / WSL2",
+      "purpose": "Windows 上的 Linux 容器运行环境",
+      "module": "runtime",
+      "condition": "需启用 WSL2 / Linux 容器环境"
+    },
+    {
+      "name": "Node.js",
+      "purpose": "React/TypeScript/Vite 构建",
+      "module": "tooling",
+      "condition": ""
+    },
+    {
+      "name": "uv",
+      "purpose": "隔离的 Python 环境和依赖安装脚本",
+      "module": "tooling",
+      "condition": ""
+    },
+    {
+      "name": "Maven",
+      "purpose": "Java 构建及 JUnit 检查",
+      "module": "tooling",
+      "condition": ""
+    },
+    {
+      "name": "Docker Compose",
+      "purpose": "按 core/devices/analytics/warehouse/research/offline/monitoring/models 分组启动",
+      "module": "runtime",
+      "condition": "需安装 Docker Desktop 并启动 Linux 引擎"
+    },
+    {
+      "name": "Nginx",
+      "purpose": "同源 HTTPS、长连接、设备双向 TLS 反向代理",
+      "module": "gateway",
+      "condition": ""
+    },
+    {
+      "name": "pytest",
+      "purpose": "权限适配、签名、质量与任务输入边界检查",
+      "module": "tests",
+      "condition": ""
+    },
+    {
+      "name": "JUnit",
+      "purpose": "项目越权、设备审批、对象归属及标签确认测试",
+      "module": "tests",
+      "condition": ""
+    },
+    {
+      "name": "Playwright",
+      "purpose": "页面入口与响应式业务流程的浏览器测试",
+      "module": "tests",
+      "condition": ""
+    },
+    {
+      "name": "GitHub Actions",
+      "purpose": "前端构建、Java/Python 检查与 Linux 集成检查配置",
+      "module": "ci",
+      "condition": "工作流已准备，目标 lsyilll/hhh；远端运行待完成"
+    },
+    {
+      "name": "SAM3",
+      "purpose": "文本/框提示分割候选；由人复核后用于标注",
+      "module": "models",
+      "condition": "官方授权及权重待本人完成，建议独占 GPU 模式"
+    },
+    {
+      "name": "Kafka",
+      "purpose": "可靠业务事件主题，发件箱补发与流式消费",
+      "module": "analytics",
+      "condition": ""
+    },
+    {
+      "name": "Flink / Flink SQL",
+      "purpose": "事件去重、事件时间水位线和一分钟窗口统计",
+      "module": "analytics",
+      "condition": ""
+    },
+    {
+      "name": "Doris / SQL",
+      "purpose": "ODS 原始事件、DWD 任务明细、DWS 窗口聚合、ADS 日报",
+      "module": "warehouse",
+      "condition": ""
+    },
+    {
+      "name": "Airflow / Python / SQL",
+      "purpose": "每日样本快照、历史质量任务及后续重算入口",
+      "module": "offline",
+      "condition": ""
+    },
+    {
+      "name": "Parquet",
+      "purpose": "可重复审计的数据快照与数据清单导出",
+      "module": "offline",
+      "condition": ""
+    },
+    {
+      "name": "OpenTelemetry",
+      "purpose": "请求链路与任务观测接口，不采集人脸或音频正文",
+      "module": "monitoring",
+      "condition": ""
+    },
+    {
+      "name": "Prometheus",
+      "purpose": "采集业务和算法运行指标",
+      "module": "monitoring",
+      "condition": ""
+    },
+    {
+      "name": "Grafana",
+      "purpose": "耗时、失败率和任务状态仪表板",
+      "module": "monitoring",
+      "condition": ""
+    },
+    {
+      "name": "ONNX Runtime",
+      "purpose": "分类头导出与真实测试样本的一致性校验",
+      "module": "accelerator",
+      "condition": ""
+    },
+    {
+      "name": "TensorRT",
+      "purpose": "独占 GPU 上的数值分类头优化及与 ORT 的一致性比较",
+      "module": "accelerator",
+      "condition": "RTX 3060 数值头一致性实测通过；独立 Windows SDK；未导出整个 AgriChat"
+    },
+    {
+      "name": "Qwen3.5-4B",
+      "purpose": "根据图像和已有证据整理报告，保留不确定性",
+      "module": "models",
+      "condition": "官方权重已校验；CPU 真实报告生成通过；96 token 验收输出截断，完整报告需更长生成"
+    },
+    {
+      "name": "树莓派 / 摄像头 / 补光 / 按钮 / 二维码",
+      "purpose": "双向 TLS 采集代理、GPIO 控灯和按钮、离线重试队列",
+      "module": "edge",
+      "condition": "硬件尚未连接，不能由软件安装代替"
+    }
+  ],
+  "status_note": "此清单描述源码用途；运行状态由 /api/platform/health 实测。源码、构建和端到端验收不混为一谈。"
+}

@@ -1,0 +1,85 @@
+name: Guanye platform checks
+on:
+  push:
+    branches: [main]
+    paths: ['guanye-platform/**', '.github/workflows/guanye-platform.yml']
+  pull_request:
+    paths: ['guanye-platform/**', '.github/workflows/guanye-platform.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: guanye-${{ github.ref }}
+  cancel-in-progress: true
+defaults:
+  run:
+    working-directory: guanye-platform
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with: {python-version: '3.12'}
+      - run: uv sync --locked --extra experiments
+      - run: uv run pytest tests -q
+  business:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+          cache-dependency-path: guanye-platform/business/pom.xml
+      - run: mvn -B -f business/pom.xml verify
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '24'}
+      - uses: pnpm/action-setup@v4
+        with: {version: '11.25.0'}
+      - run: pnpm --dir web install --frozen-lockfile --node-linker=hoisted --ignore-scripts
+      - run: node node_modules/typescript/bin/tsc --noEmit
+        working-directory: guanye-platform/web
+      - run: node node_modules/vite/bin/vite.js build --config vite.config.mjs --configLoader native
+        working-directory: guanye-platform/web
+      - run: node node_modules/@playwright/test/cli.js install --with-deps chromium
+        working-directory: guanye-platform/web
+      - run: node node_modules/@playwright/test/cli.js test --workers 1
+        working-directory: guanye-platform/web
+  compose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install cryptography && python scripts/init_config.py
+      - run: docker compose -f compose.yaml -f compose.extended.yaml --profile '*' config --quiet
+  core-integration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with: {python-version: '3.12'}
+      - run: uv sync --locked
+      - run: uv run python scripts/init_config.py
+      - run: docker compose up -d --build postgres redis seaweed business worker dispatcher
+      - name: Wait for the authenticated business service
+        run: |
+          for attempt in $(seq 1 60); do
+            if curl --fail --silent http://127.0.0.1:18081/actuator/health > /dev/null; then exit 0; fi
+            sleep 3
+          done
+          exit 1
+      - run: uv run python scripts/smoke_core.py
+      - name: Collect failure diagnostics without resolved configuration or secrets
+        if: failure()
+        run: docker compose logs --tail 80 business worker dispatcher
+      - name: Remove ephemeral CI services and their test-only volumes
+        if: always()
+        run: docker compose down --volumes

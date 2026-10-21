@@ -1,0 +1,7 @@
+user platform-bridge
+topic read guanye/devices/+/heartbeat
+topic read guanye/devices/+/sample
+topic write guanye/devices/+/commands
+pattern write guanye/devices/%u/heartbeat
+pattern write guanye/devices/%u/sample
+pattern read guanye/devices/%u/commands

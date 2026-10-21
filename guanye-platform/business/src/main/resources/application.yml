@@ -1,0 +1,28 @@
+server:
+  port: 8081
+  error:
+    include-message: always
+spring:
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:15432/guanye}
+    username: ${POSTGRES_USER:guanye}
+    password: ${POSTGRES_PASSWORD}
+    hikari:
+      maximum-pool-size: 6
+  flyway:
+    baseline-on-migrate: true
+    baseline-version: 0
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+  endpoint:
+    health:
+      show-details: never
+guanye:
+  bridge-secret: ${GUANYE_BRIDGE_SECRET}

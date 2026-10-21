@@ -1,0 +1,50 @@
+# Reuse the existing worker image; source mounts keep updates independent of SDK downloads.
+services:
+  worker:
+    environment:
+      OTEL_ENABLED: '1'
+      OTEL_METRIC_EXPORT_INTERVAL: '10000'
+      PYTHONDONTWRITEBYTECODE: '1'
+    volumes: ['./worker:/app/worker:ro', './integrations/telemetry.py:/app/telemetry.py:ro']
+  dispatcher:
+    environment: {PYTHONDONTWRITEBYTECODE: '1'}
+    volumes: ['./worker:/app/worker:ro']
+  device-bridge:
+    image: guanye-worker:latest
+    pull_policy: never
+    environment: {PYTHONDONTWRITEBYTECODE: '1'}
+    volumes: ['./worker:/app/worker:ro']
+  analytics-sink:
+    image: guanye-worker:latest
+    pull_policy: never
+    environment: {PYTHONDONTWRITEBYTECODE: '1'}
+    volumes: ['./worker:/app/worker:ro']
+  doris:
+    environment:
+      FE_HEAP: 1024m
+      BE_HEAP: 512m
+      BE_CONFIG_EXTRA: "mem_limit = 65%"
+
+  airflow:
+    environment:
+      AIRFLOW__CORE__SIMPLE_AUTH_MANAGER_USERS: guanye-admin:admin
+      AIRFLOW__CORE__SIMPLE_AUTH_MANAGER_PASSWORDS_FILE: /run/guanye-airflow/passwords.json
+      AIRFLOW__CORE__SIMPLE_AUTH_MANAGER_ALL_ADMINS: 'false'
+      AIRFLOW__CORE__PARALLELISM: '2'
+      AIRFLOW__CORE__MAX_ACTIVE_TASKS_PER_DAG: '1'
+      AIRFLOW__API__WORKERS: '1'
+      AIRFLOW__DAG_PROCESSOR__PARSING_PROCESSES: '1'
+      AIRFLOW__SCHEDULER__PARSING_PROCESSES: '1'
+      AIRFLOW__CORE__EXECUTION_API_SERVER_URL: http://localhost:8080/execution/
+    volumes:
+      - ./.runtime/airflow:/run/guanye-airflow
+      - airflowlogs:/opt/airflow/logs
+  models:
+    environment:
+      PYTHONDONTWRITEBYTECODE: '1'
+      OMP_NUM_THREADS: '4'
+      MKL_NUM_THREADS: '4'
+    volumes:
+      - ./model_service:/app/model_service:ro
+volumes:
+  airflowlogs: {}

@@ -1,0 +1,6 @@
+[wsl2]
+memory=18GB
+processors=4
+swap=8GB
+# Copy reviewed settings to your own Windows .wslconfig only after installing WSL2.
+# Applies after a manual wsl --shutdown; do not stop another person's work automatically.
